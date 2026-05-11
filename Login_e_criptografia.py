@@ -31,41 +31,48 @@ def valida_senha(senha):
 
     return check_maisucula and check_minuscula and check_numero and check_tamanho
 
+# Para conseguir criptografar, é necessário:
+# 1 - Pegar a letra, e converter para descimal (ASCII)
+# 2- Subtrair o valor decimal de 65 ("Z" -> 90 - 65 = 25)
+# 3 - Somar 3 ao resultado de 2 ( 25 + 3 = 28)
+# 4 - Obter o resto da divisão do resultado de 3 por 26 ( 28 % 26 = 2)
+# 5 - Somar o resto a 65 e converter ovalor de volta p/ lista ( 2 + 65 = 67 -> letra C)
+
 def criptografia_senha(senha):
     senha_cripto = ''
-
+    # Verificando se é numero, letra maisucula , minusculo ou especial
     for char in senha:
         if char.isdigit():
-            ref = ord('0')
-            ascii_char = ord(char)
-            posicao_alpha = ascii_char - ref
-            posicao_cesar = posicao_alpha + 3
-            posicao_cesar = posicao_cesar % 10
-            letra_cesar = chr(ref + posicao_cesar)
+            ref = ord('0') 
+            ascci_char = ord(char) # Etapa 1 
+            posicao_alpha = ascci_char - ref # Etapa 2
+            posicao_cesar = posicao_alpha + 3 # Etapa 3 
+            posicao_cesar =  posicao_cesar % 10 # Etapa 4
+            letra_cesar = chr(ref + posicao_cesar) # Etapa 5 
             senha_cripto += letra_cesar
 
         elif 'A' <= char <= 'Z':
-            ref = ord('A')
-            ascii_char = ord(char)
-            posicao_alpha = ascii_char - ref
-            posicao_cesar = posicao_alpha + 3
-            posicao_cesar = posicao_cesar % 26
-            letra_cesar = chr(ref + posicao_cesar)
+            ref = ord('A') # 65
+            ascci_char = ord(char) # Etapa 1 
+            posicao_alpha = ascci_char - ref # Etapa 2
+            posicao_cesar = posicao_alpha + 3 # Etapa 3 
+            posicao_cesar =  posicao_cesar % 26 # Etapa 4
+            letra_cesar = chr(ref + posicao_cesar) # Etapa 5 
             senha_cripto += letra_cesar
-
+        
         elif 'a' <= char <= 'z':
-            ref = ord('a')
-            ascii_char = ord(char)
-            posicao_alpha = ascii_char - ref
-            posicao_cesar = posicao_alpha + 3
-            posicao_cesar = posicao_cesar % 26
-            letra_cesar = chr(ref + posicao_cesar)
+            ref = ord('a') 
+            ascci_char = ord(char) # Etapa 1 
+            posicao_alpha = ascci_char - ref # Etapa 2
+            posicao_cesar = posicao_alpha + 3 # Etapa 3 
+            posicao_cesar =  posicao_cesar % 26 # Etapa 4
+            letra_cesar = chr(ref + posicao_cesar) # Etapa 5 
             senha_cripto += letra_cesar
 
-        else:
+        else: 
             senha_cripto += char
-
     return senha_cripto
+
 
 # PYGAME
 
